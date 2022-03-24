@@ -4,7 +4,7 @@ const router = express.Router()
 
 //Getting all
 router.get('/',(req,res)=>{
-
+    res.send("Hellow world")
 })
 //Getting one
 router.get('/:id',(req,res)=>{
