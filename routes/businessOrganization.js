@@ -37,6 +37,21 @@ router.patch('/:id',getOrganization,async (req,res)=>{
     if(req.body.CompanyName!=null){
         res.businessOrganization.CompanyName = req.body.CompanyName
     }
+    if(req.body.CEOName!=null){
+        res.businessOrganization.CEOName = req.body.CEOName
+    }
+    if(req.body.Managers!=null){
+        res.businessOrganization.Managers = req.body.Managers
+    }
+    if(req.body.netWorth!=null){
+        res.businessOrganization.netWorth = req.body.netWorth
+    }
+    if(req.body.Products!=null){
+        res.businessOrganization.Products = req.body.Products
+    }
+    if(req.body.profitByYear!=null){
+        res.businessOrganization.profitByYear = req.body.profitByYear
+    }
     try {
         const updatedOrganization = await res.businessOrganization.save()
         res.json(updatedOrganization)
