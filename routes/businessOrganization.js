@@ -33,8 +33,16 @@ router.post('/',async (req,res)=>{
     }
 })
 //Updating one
-router.patch('/',(req,res)=>{
-    
+router.patch('/:id',getOrganization,async (req,res)=>{
+    if(req.body.CompanyName!=null){
+        res.businessOrganization.CompanyName = req.body.CompanyName
+    }
+    try {
+        const updatedOrganization = await res.businessOrganization.save()
+        res.json(updatedOrganization)
+    } catch (err) {
+        res.status(400).json({message:err.message})
+    }
 })
 
 //Deleting one
