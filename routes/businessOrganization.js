@@ -1,11 +1,16 @@
 const express = require('express')
 const router = express.Router()
-//const organiztion = require('../models/organiztion')
+const organization = require('../models/businessOrganization')
 
 //Getting all
-router.get('/',(req,res)=>{
-    res.send("Hellow world")
-})
+router.get('/', async (req, res) => {
+    try {
+      const businessOrganizations = await organization.find()
+      res.json(businessOrganizations)
+    } catch (err) {
+      res.status(500).json({ message: err.message })
+    }
+  })
 //Getting one
 router.get('/:id',(req,res)=>{
     
