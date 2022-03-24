@@ -5,15 +5,15 @@ const Organization = require('../models/businessOrganization')
 //Getting all
 router.get('/', async (req, res) => {
     try {
-      const businessOs = await Organization.find()
+      const businessOrganizations = await Organization.find()
       res.json(businessOrganizations)
     } catch (err) {
       res.status(500).json({ message: err.message })
     }
   })
 //Getting one
-router.get('/:id',(req,res)=>{
-    
+router.get('/:id',getOrganization,(req,res)=>{
+    res.json(res.businessOrganization)
 })
 //Adding one
 router.post('/',async (req,res)=>{
@@ -40,4 +40,22 @@ router.patch('/',(req,res)=>{
 router.delete('/:id',(req,res)=>{
     
 })
+
+
+async function getOrganization(req, res, next) {
+    let businessOrganization
+    try {
+        businessOrganization = await Organization.findById(req.params.id)
+      if (businessOrganization == null) {
+        return res.status(404).json({ message: 'Cannot find business organization' })
+      }
+    } catch (err) {
+      return res.status(500).json({ message: err.message })
+    }
+  
+    res.businessOrganization = businessOrganization
+    next()
+}
+
+
 module.exports = router
