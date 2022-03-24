@@ -36,9 +36,15 @@ router.post('/',async (req,res)=>{
 router.patch('/',(req,res)=>{
     
 })
+
 //Deleting one
-router.delete('/:id',(req,res)=>{
-    
+router.delete('/:id',getOrganization,async(req,res)=>{
+    try{
+        await res.businessOrganization.remove()
+        res.json({message:"Deleted Organization"})
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
 })
 
 
