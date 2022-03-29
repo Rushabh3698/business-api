@@ -15,5 +15,5 @@ app.use(express.json())
 
 const businessOrganizationRoutes = require("./routes/businessOrganization")
 app.use("/business",businessOrganizationRoutes) 
-
-app.listen(3000,()=>console.log("server started"))
+const PORT=process.env.PORT || 3000
+app.listen(PORT,()=>console.log("server started"))
